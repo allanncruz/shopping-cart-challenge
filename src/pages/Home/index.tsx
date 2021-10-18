@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import { api } from '../../services/api';
+import { formatPrice } from '../../util/format';
 
 import { ProductList, Container } from './styles';
 
@@ -24,7 +25,7 @@ const Home = (): JSX.Element => {
     
           setProducts(
             response.data.map((eachProduct: Product) => {
-              return {...eachProduct};
+              return {...eachProduct, priceFormatted: formatPrice(eachProduct.price)};
             })
           );
         }
@@ -39,8 +40,8 @@ const Home = (): JSX.Element => {
                     <li>
                         <img src={product.image} alt={product.name} />
                         <strong>{product.name}</strong>
-                        <span>{product.price}</span>
-                        <small>{product.stock}</small>
+                        <span>{product.priceFormatted}</span>
+                        <small><b>Estoque:</b> {product.stock}</small>
                         <button
                             type="button"
                             data-testid="add-product-button"
