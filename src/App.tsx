@@ -1,10 +1,16 @@
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 
-function App() {
+import GlobalStyles from './styles/global';
+import Header from './components/Header';
+
+const App = (): JSX.Element => {
   return (
-    <div className="App">
-      Shopping Cart Challenge
-    </div>
+    <BrowserRouter>
+      <GlobalStyles />
+      <Header />
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
