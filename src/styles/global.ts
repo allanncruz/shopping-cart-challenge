@@ -15,13 +15,12 @@ export default createGlobalStyle`
   }
 
   body {
-    background: #191920;
+    background: #f8f9fc;
     font: 14px Roboto, sans-serif;
   }
 
   #root {
     max-width: 1020px;
     margin: 0 auto;
-    padding: 0 20px 50px;
   }
 `;

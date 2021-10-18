@@ -5,11 +5,12 @@ export const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 50px 0;
+  padding: 20px 50px;
+  box-shadow: 0 .15rem 1.75rem 0 rgba(58,59,69,.15);
+  background: #fff;
 
   a {
     transition: opacity 0.2s;
-    color: #fff; 
 
     &:hover {
       opacity: 0.7;
@@ -28,7 +29,7 @@ export const Cart = styled(Link)`
 
     strong {
       display: block;
-      color: #fff;
+      color: #999;
     }
 
     span {
