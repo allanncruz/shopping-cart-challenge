@@ -11,6 +11,7 @@ export const ProductList = styled.ul`
   grid-gap: 20px;
   list-style: none;
   text-align: center;
+  padding: 30px;
 
   li {
     display: flex;
