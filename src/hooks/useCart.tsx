@@ -33,7 +33,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
 
   const addProduct = async (productId: string) => {
     try {
-      const responseStock = await api.get(`stock/${productId}`);
+      const responseStock = await api.get(`product/${productId}`);
 
       const specificProduct = cart.find((specificProduct) => specificProduct.id === productId);
       let addProductInCart: Product[] = [];
@@ -60,7 +60,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
           toast.error("Quantidade solicitada fora de estoque");
           return
         }
-        const responseProduct = await api.get(`products/${productId}`);
+        const responseProduct = await api.get(`product/${productId}`);
         const productWithAmount = {...responseProduct.data, amount: 1};
 
         addProductInCart = [...cart, productWithAmount];
@@ -98,7 +98,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       }
 
       // Verificar se existe no estoque a quantidade desejada do produto.
-      const response = await api.get(`stock/${productId}`);
+      const response = await api.get(`product/${productId}`);
       if (amount <= response.data.amount){
         // O valor atualizado do carrinho deve ser perpetuado no localStorage utilizando o método setItem.
         const updateProductInCart = cart.map((product: Product) => {
