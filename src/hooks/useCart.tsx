@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useState } from 'react';
+import { toast } from 'react-toastify';
 import { api } from '../services/api';
 import { Product, Stock } from '../types';
 
@@ -40,7 +41,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       if (specificProduct) {
         // Verificar se existe no estoque a quantidade desejada do produto
         if(specificProduct.amount >= responseStock.data.amount || responseStock.data.amount <= 1) {
-            alert("Quantidade solicitada fora de estoque");
+          toast.error("Quantidade solicitada fora de estoque");
           return
         }
 
@@ -56,7 +57,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
       } else {
         // Verificar se existe no estoque a quantidade desejada do produto
         if(responseStock.data.amount < 1) {
-            alert("Quantidade solicitada fora de estoque");
+          toast.error("Quantidade solicitada fora de estoque");
           return
         }
         const responseProduct = await api.get(`products/${productId}`);
@@ -67,7 +68,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         localStorage.setItem(`@RocketShoes:cart`, JSON.stringify(addProductInCart));
       }
     } catch {
-        alert("Erro na adição do produto");
+      toast.error("Erro na adição do produto");
     }
   };
 
@@ -82,7 +83,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         throw new Error('Erro na remoção do produto');
       }
     } catch (error) {
-      alert("error");
+      toast.error("error");
     }
   };
 
@@ -110,10 +111,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         setCart(updateProductInCart);
         localStorage.setItem('@RocketShoes:cart', JSON.stringify(updateProductInCart));
       } else {
-        alert('Quantidade solicitada fora de estoque');
+        toast.error('Quantidade solicitada fora de estoque');
       }
     } catch(err) {
-        alert("Erro na alteração de quantidade do produto");
+      toast.error("Erro na alteração de quantidade do produto");
     }
   };
 
