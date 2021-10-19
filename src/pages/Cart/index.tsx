@@ -10,8 +10,8 @@ import { formatPrice } from '../../util/format';
 import { Container, ProductTable, Total } from './styles';
 
 interface Product {
-  id: number;
-  title: string;
+  id: string;
+  name: string;
   price: number;
   image: string;
   amount: number;
@@ -45,7 +45,7 @@ const Cart = (): JSX.Element => {
     updateProductAmount({productId: product.id, amount: newProductAmount});
   }
 
-  function handleRemoveProduct(productId: number) {
+  function handleRemoveProduct(productId: string) {
     removeProduct(productId);
   }
 
@@ -66,10 +66,10 @@ const Cart = (): JSX.Element => {
           return (
             <tr data-testid="product" key={product.id}>
               <td>
-                <img src={product.image} alt={product.title} />
+                <img src={product.image} alt={product.name} />
               </td>
               <td>
-                <strong>{product.title}</strong>
+                <strong>{product.name}</strong>
                 <span>{product.priceFormatted}</span>
               </td>
               <td>

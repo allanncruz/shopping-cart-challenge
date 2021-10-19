@@ -7,14 +7,14 @@ interface CartProviderProps {
 }
 
 interface UpdateProductAmount {
-  productId: number;
+  productId: string;
   amount: number;
 }
 
 interface CartContextData {
   cart: Product[];
-  addProduct: (productId: number) => Promise<void>;
-  removeProduct: (productId: number) => void;
+  addProduct: (productId: string) => Promise<void>;
+  removeProduct: (productId: string) => void;
   updateProductAmount: ({ productId, amount }: UpdateProductAmount) => void;
 }
 
@@ -30,10 +30,10 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     return [];
   });
 
-  const addProduct = async (productId: number) => {
+  const addProduct = async (productId: string) => {
     try {
       const responseStock = await api.get(`stock/${productId}`);
-          
+
       const specificProduct = cart.find((specificProduct) => specificProduct.id === productId);
       let addProductInCart: Product[] = [];
 
@@ -52,7 +52,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
         })
         setCart(addProductInCart);
         localStorage.setItem(`@RocketShoes:cart`, JSON.stringify(addProductInCart));
-      
+
       } else {
         // Verificar se existe no estoque a quantidade desejada do produto
         if(responseStock.data.amount < 1) {
@@ -71,7 +71,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
     }
   };
 
-  const removeProduct = (productId: number) => {
+  const removeProduct = (productId: string) => {
     try {
       const specificProduct = cart.find((specificProduct) => specificProduct.id === productId);
       if (specificProduct) {
@@ -106,7 +106,7 @@ export function CartProvider({ children }: CartProviderProps): JSX.Element {
           }
           return product;
         });
-        
+
         setCart(updateProductInCart);
         localStorage.setItem('@RocketShoes:cart', JSON.stringify(updateProductInCart));
       } else {

@@ -7,8 +7,8 @@ import { formatPrice } from '../../util/format';
 import { useCart } from '../../hooks/useCart';
 
 interface Product {
-  id: number;
-  title: string;
+  id: any;
+  name: string;
   price: number;
   image: string;
 }
@@ -26,13 +26,14 @@ const Home = (): JSX.Element => {
   const { addProduct, cart } = useCart();
 
   const cartItemsAmount = cart.reduce((sumAmount, product) => {
+    // @ts-ignore
     sumAmount[product.id] = product.amount;
     return sumAmount;
   }, {} as CartItemsAmount)
 
   useEffect(() => {
     async function loadProducts() {
-      const response = await api.get('products');
+      const response = await api.get('product');
 
       setProducts(
         response.data.map((eachProduct: Product) => {
@@ -44,7 +45,7 @@ const Home = (): JSX.Element => {
     loadProducts();
   }, []);
 
-  function handleAddProduct(id: number) {
+  function handleAddProduct(id: string) {
     addProduct(id);
   }
 
@@ -53,8 +54,8 @@ const Home = (): JSX.Element => {
       {products.map((product) => {
         return (
           <li key={product.id}>
-            <img src={product.image} alt={product.title} />
-            <strong>{product.title}</strong>
+            <img src={product.image} alt={product.name} />
+            <strong>{product.name}</strong>
             <span>{product.priceFormatted}</span>
             <button
               type="button"
