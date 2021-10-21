@@ -59,10 +59,10 @@ const Home = (): JSX.Element => {
             <span>{product.priceFormatted}</span>
             <button
               type="button"
-              data-testid="add-product-button"
+              data-cy="add-product-button"
               onClick={() => handleAddProduct(product.id)}
             >
-              <div data-testid="cart-product-quantity">
+              <div data-cy="add-product-button">
                 <MdAddShoppingCart size={16} color="#FFF" />
                 {cartItemsAmount[product.id] || 0}
               </div>

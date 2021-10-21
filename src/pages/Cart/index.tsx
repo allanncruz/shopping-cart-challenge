@@ -68,7 +68,7 @@ const Cart = (): JSX.Element => {
         <tbody>
         {cartFormatted.map((product) => {
           return (
-            <tr data-testid="product" key={product.id}>
+            <tr key={product.id}>
               <td>
                 <img src={product.image} alt={product.name} />
               </td>
@@ -80,7 +80,7 @@ const Cart = (): JSX.Element => {
                 <div>
                   <button
                     type="button"
-                    data-testid="decrement-product"
+                    data-cy="decrement-product"
                     disabled={product.amount <= 1}
                     onClick={() => handleProductDecrement(product)}
                   >
@@ -88,13 +88,13 @@ const Cart = (): JSX.Element => {
                   </button>
                   <input
                     type="text"
-                    data-testid="product-amount"
+                    data-cy="product-amount"
                     readOnly
                     value={product.amount}
                   />
                   <button
                     type="button"
-                    data-testid="increment-product"
+                    data-cy="increment-product"
                     onClick={() => handleProductIncrement(product)}
                   >
                     <MdAddCircleOutline size={20} />
@@ -107,7 +107,7 @@ const Cart = (): JSX.Element => {
               <td>
                 <button
                   type="button"
-                  data-testid="remove-product"
+                  data-cy="remove-product"
                   onClick={() => handleRemoveProduct(product.id)}
                 >
                   <MdDelete size={20} />
@@ -121,7 +121,9 @@ const Cart = (): JSX.Element => {
       </ProductTable>
 
       <footer>
-        <button onClick={handleRequestProduct} type="button">Finalizar pedido</button>
+        <button onClick={handleRequestProduct} data-cy="handle-request-product" type="button">
+          Finalizar pedido
+        </button>
 
         <Total>
           <span>TOTAL</span>
