@@ -11,6 +11,7 @@ export const ProductList = styled.ul`
   grid-gap: 20px;
   list-style: none;
   text-align: center;
+  padding: 30px;
 
   li {
     display: flex;
@@ -35,7 +36,10 @@ export const ProductList = styled.ul`
     > span {
       font-size: 21px;
       font-weight: bold;
-      margin: 30px 0 20px;
+      margin: 30px 0 10px;
+    }
+    > small{
+      margin: 10px 0
     }
 
     button {
