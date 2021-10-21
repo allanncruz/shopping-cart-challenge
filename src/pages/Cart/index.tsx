@@ -49,6 +49,10 @@ const Cart = (): JSX.Element => {
     removeProduct(productId);
   }
 
+  function handleRequestProduct() {
+    console.log('Finalizar pedido!');
+  }
+
   return (
     <Container>
       <ProductTable>
@@ -117,7 +121,7 @@ const Cart = (): JSX.Element => {
       </ProductTable>
 
       <footer>
-        <button type="button">Finalizar pedido</button>
+        <button onClick={handleRequestProduct} type="button">Finalizar pedido</button>
 
         <Total>
           <span>TOTAL</span>
