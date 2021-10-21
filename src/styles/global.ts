@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export default createGlobalStyle`
@@ -20,7 +21,6 @@ export default createGlobalStyle`
   }
 
   #root {
-    max-width: 1020px;
     margin: 0 auto;
   }
 `;
